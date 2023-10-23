@@ -1,6 +1,8 @@
 export const baseUrl = "https://local:5000/api"
 
 export const postRequest = async(url, body) =>{
+    console.log("body",body)
+
     const response = await fetch(url,{
         method: "POST",
         headers: {

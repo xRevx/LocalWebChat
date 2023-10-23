@@ -16,38 +16,39 @@ export const AuthContextProvider = ({ children }) => {
 
     const updateRegisterInfo = useCallback((info) => {
         setRegisterInfo(info);
-    },[])
+    }, [])
 
-    
-    const registerUser = useCallback(async(e) => {
+
+    const registerUser = useCallback(async (e) => {
         e.preventDefault()
 
         setIsRegisterLoading(true)
         setRegisterError(null)
+        const response = await postRequest(`http://localhost:5000/api/users/register`,
+            JSON.stringify(registerInfo))
 
-        const response = await postRequest(`${baseUrl}/users/register`,
-         JSON.stringify(registerInfo))
 
         setIsRegisterLoading(false)
 
-        if(response.error){
+
+        if (response.error) {
             return setRegisterError(response)
         }
 
         localStorage.setItem("User", JSON.stringify(response))
         setUser(response)
-    },[registerInfo])
+    }, [registerInfo])
 
     return (
-         <AuthContext.Provider
-        value={{
-            user,
-            registerInfo,
-            updateRegisterInfo,
-            registerUser,
-            registerError,
-            isRegisterLoading,
-        }}>
+        <AuthContext.Provider
+            value={{
+                user,
+                registerInfo,
+                updateRegisterInfo,
+                registerUser,
+                registerError,
+                isRegisterLoading,
+            }}>
             {children}
         </AuthContext.Provider>
     )

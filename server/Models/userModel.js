@@ -16,7 +16,7 @@ const userSchema = new mong.Schema({
     password:
     {
         type: String, required: true,
-        minLength: 3, maxLength: 20
+        minLength: 3, maxLength: 20   
     },
 
 },
