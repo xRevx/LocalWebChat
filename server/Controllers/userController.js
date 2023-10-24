@@ -32,12 +32,14 @@ const registerUser = async (req, res) => {
         if (!validator.isStrongPassword(password))
             return res.status(400).json("Password must be strong ")
 
+        if(password.length > 20)
+            return res.status(400).json("Password is too looooong")
+
 
         user = new userModel({ name, email, password })
 
         const salt = await bcrypt.genSalt(10)
         user.password = await bcrypt.hash(user.password, salt)
-        user.password = user.password.substring(0, 18);
 
         await user.save()//problem here
 
