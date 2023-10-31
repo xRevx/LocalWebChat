@@ -21,8 +21,8 @@ function App() {
       <Container >
         <Routes>
           <Route path= "/" element = {user ? <Chat/> : <Login/>}/>
-          <Route path= "/register" element = {user ? <Chat/> : <Register/>}/>
-          <Route path= "/login" element = {user ? <Chat/> : <Login/>}/>
+          <Route path= "/register" element = {user ? <Navigate to="/" />  : <Register/>}/>
+          <Route path= "/login" element = {user ? <Navigate to="/" />  : <Login/>}/>
           <Route path= "*" element = {<Navigate to="/"/>}/>
         </Routes>
       </Container>
