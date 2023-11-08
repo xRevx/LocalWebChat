@@ -40,7 +40,7 @@ export const AuthContextProvider = ({ children }) => {
 
         setIsRegisterLoading(true)
         setRegisterError(null)
-        const response = await postRequest(`http://localhost:5000/api/users/register`,
+        const response = await postRequest(`${baseUrl}/users/register`,
             JSON.stringify(registerInfo))
 
 
